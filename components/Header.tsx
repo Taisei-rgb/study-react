@@ -2,7 +2,6 @@
 import Head from 'next/head'
 
 export function Header(props: any) {
-	console.log(props);
   return(
     <Head>
       {props.children}
