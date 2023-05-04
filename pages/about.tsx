@@ -1,21 +1,23 @@
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import { Links } from '@/components/Links'
-import { Headline } from '@/components/Headline'
-import { Container } from '@/components/Container'
-import { Header } from '@/components/Header'
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import { Links } from "@/components/Links";
+import { Headline } from "@/components/Headline";
+import { Main } from "@/components/Main";
+import { Header } from "@/components/Header";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  return (
-    <>
-      <Header page='about' />
-      <main className={styles.main}>
-        <Headline title='About Page' />
-        <Container />
-        <Links />
-      </main>
-    </>
-  )
+	return (
+		<>
+			<Header>
+				<title>about page</title>
+			</Header>
+			<main className={styles.main}>
+				<Headline title="About Page" />
+				<Main />
+				<Links />
+			</main>
+		</>
+	);
 }
