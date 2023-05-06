@@ -5,18 +5,18 @@ import { Headline } from "@/components/Headline";
 import { Main } from "@/components/Main";
 import { Header } from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-	const foo = 3;
+	const [count, setCount] = useState(1);
 
-	const hundleClick = useCallback((e: any) => {
-		console.log(e.target);
-		e.preventDefault();
-		alert(foo);
-	}, []);
+	// let foo = 1;
+	const hundleClick = (e: any) => {
+		setCount((count) => count + 1);
+		setCount((count) => count + 1);
+	};
 
 	useEffect(() => {
 		// マウント時の処理
@@ -37,9 +37,8 @@ export default function Home() {
 			<main className={styles.main}>
 				<Headline title="Index Page" />
 				<Main />
-				<a href="/about" onClick={hundleClick}>
-					ボタン
-				</a>
+				<h1>{count}</h1>
+				<button onClick={hundleClick}>ボタン</button>
 				<Links />
 			</main>
 		</>
