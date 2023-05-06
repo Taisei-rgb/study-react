@@ -5,7 +5,7 @@ import { Headline } from "@/components/Headline";
 import { Main } from "@/components/Main";
 import { Header } from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +16,16 @@ export default function Home() {
 		console.log(e.target);
 		e.preventDefault();
 		alert(foo);
+	}, []);
+
+	useEffect(() => {
+		// マウント時の処理
+		document.body.style.backgroundColor = "lightblue";
+
+		// アンマウント時の処理
+		return () => {
+			document.body.style.backgroundColor = "";
+		};
 	}, []);
 
 	return (
