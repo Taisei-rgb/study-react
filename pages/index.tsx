@@ -12,11 +12,11 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
 	const [count, setCount] = useState(1);
 
-	// let foo = 1;
-	const hundleClick = (e: any) => {
-		setCount((count) => count + 1);
-		setCount((count) => count + 1);
-	};
+	const hundleClick = useCallback(() => {
+		if (count < 10) {
+			setCount((count) => count + 1);
+		}
+	}, [count]);
 
 	useEffect(() => {
 		// マウント時の処理
