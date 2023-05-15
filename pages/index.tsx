@@ -16,12 +16,12 @@ export default function Home() {
 
 	const hundleClick = useCallback(() => {
 		if (count < 10) {
-			setCount((count) => count + 1);
+			setCount((prevCount) => prevCount + 1);
 		}
 	}, [count]);
 
 	const hundleDisplay = useCallback(() => {
-		setIsShow((isShow) => !isShow);
+		setIsShow((prevIsShow) => !prevIsShow);
 	}, []);
 
 	const hundleChange = useCallback((e: any) => {
