@@ -5,49 +5,16 @@ import { Headline } from "@/components/Headline";
 import { Main } from "@/components/Main";
 import { Header } from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "@/hooks/useCounter";
+import { useInputArray } from "@/hooks/useInputArray";
+import { useBgLightBlue } from "@/hooks/useBgLightBlue";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-	const [count, setCount] = useState(1);
-	const [text, setText] = useState("");
-	const [isShow, setIsShow] = useState(true);
-	const [array, setArray] = useState<string[]>([]);
-
-	const hundleClick = useCallback(() => {
-		if (count < 10) {
-			setCount((prevCount) => prevCount + 1);
-		}
-	}, [count]);
-
-	const hundleDisplay = useCallback(() => {
-		setIsShow((prevIsShow) => !prevIsShow);
-	}, []);
-
-	const hundleChange = useCallback((e: any) => {
-		if (e.target.value.length >= 5) {
-			alert("5文字以下にしてください。");
-			return;
-		}
-		setText(e.target.value.trim());
-	}, []);
-
-	const hundleAdd = useCallback(() => {
-		setArray((prevArray) => {
-			return [...prevArray, text];
-		});
-	}, [text]);
-
-	useEffect(() => {
-		// マウント時の処理
-		document.body.style.backgroundColor = "lightblue";
-
-		// アンマウント時の処理
-		return () => {
-			document.body.style.backgroundColor = "";
-		};
-	}, []);
+	const { count, isShow, hundleClick, hundleDisplay } = useCounter();
+	const { text, array, hundleChange, hundleAdd } = useInputArray();
+	useBgLightBlue();
 
 	return (
 		<>
@@ -58,11 +25,15 @@ export default function Home() {
 			<main className={styles.main}>
 				<Headline title="Index Page" />
 				<Main />
+
+				{/* useConter */}
 				{isShow ? <h1>{count}</h1> : <h1>カウントは〇〇です。</h1>}
 				<button onClick={hundleClick}>ボタン</button>
 				<button onClick={hundleDisplay}>
 					{isShow ? "カウントは〇〇です。ボタン" : "カウントボタン"}
 				</button>
+
+				{/* useInputArray */}
 				<input type="text" value={text} onChange={hundleChange} />
 				<button onClick={hundleAdd}>追加</button>
 				<ul>
@@ -70,6 +41,7 @@ export default function Home() {
 						return <li key={index}>{item}</li>;
 					})}
 				</ul>
+
 				<Links />
 			</main>
 		</>
