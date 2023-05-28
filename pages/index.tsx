@@ -13,6 +13,7 @@ export default function Home() {
 	const [count, setCount] = useState(1);
 	const [text, setText] = useState("");
 	const [isShow, setIsShow] = useState(true);
+	const [array, setArray] = useState<string[]>([]);
 
 	const hundleClick = useCallback(() => {
 		if (count < 10) {
@@ -31,6 +32,12 @@ export default function Home() {
 		}
 		setText(e.target.value.trim());
 	}, []);
+
+	const hundleAdd = useCallback(() => {
+		setArray((prevArray) => {
+			return [...prevArray, text];
+		});
+	}, [text]);
 
 	useEffect(() => {
 		// マウント時の処理
@@ -57,6 +64,12 @@ export default function Home() {
 					{isShow ? "カウントは〇〇です。ボタン" : "カウントボタン"}
 				</button>
 				<input type="text" value={text} onChange={hundleChange} />
+				<button onClick={hundleAdd}>追加</button>
+				<ul>
+					{array.map((item, index) => {
+						return <li key={index}>{item}</li>;
+					})}
+				</ul>
 				<Links />
 			</main>
 		</>
