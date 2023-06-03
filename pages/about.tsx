@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function About(props: any) {
 	const {
-		count,
+		doubleCount,
 		isShow,
 		hundleClick,
 		hundleDisplay,
@@ -30,7 +30,7 @@ export default function About(props: any) {
 				<Main />
 
 				{/* useConter */}
-				{isShow ? <h1>{count}</h1> : <h1>カウントは〇〇です。</h1>}
+				{isShow ? <h1>{doubleCount}</h1> : <h1>カウントは〇〇です。</h1>}
 				<button onClick={hundleClick}>ボタン</button>
 				<button onClick={hundleDisplay}>
 					{isShow ? "カウントは〇〇です。ボタン" : "カウントボタン"}
