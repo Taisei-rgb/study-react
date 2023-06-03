@@ -8,18 +8,7 @@ import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home(props: any) {
-	const {
-		count,
-		isShow,
-		hundleClick,
-		hundleDisplay,
-		text,
-		array,
-		hundleChange,
-		hundleAdd,
-	} = props;
-
+const Home = (props: any) => {
 	return (
 		<>
 			<Header>
@@ -31,17 +20,17 @@ export default function Home(props: any) {
 				<Main />
 
 				{/* useConter */}
-				{isShow ? <h1>{count}</h1> : <h1>カウントは〇〇です。</h1>}
-				<button onClick={hundleClick}>ボタン</button>
-				<button onClick={hundleDisplay}>
-					{isShow ? "カウントは〇〇です。ボタン" : "カウントボタン"}
+				{props.isShow ? <h1>{props.count}</h1> : <h1>カウントは〇〇です。</h1>}
+				<button onClick={props.hundleClick}>ボタン</button>
+				<button onClick={props.hundleDisplay}>
+					{props.isShow ? "カウントは〇〇です。ボタン" : "カウントボタン"}
 				</button>
 
 				{/* useInputArray */}
-				<input type="text" value={text} onChange={hundleChange} />
-				<button onClick={hundleAdd}>追加</button>
+				<input type="text" value={props.text} onChange={props.hundleChange} />
+				<button onClick={props.hundleAdd}>追加</button>
 				<ul>
-					{array.map((item: any, index: number) => {
+					{props.array.map((item: any, index: number) => {
 						return <li key={index}>{item}</li>;
 					})}
 				</ul>
@@ -50,4 +39,6 @@ export default function Home(props: any) {
 			</main>
 		</>
 	);
-}
+};
+
+export default Home;

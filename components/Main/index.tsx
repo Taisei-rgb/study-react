@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./Main.module.css";
 
-export function Main() {
+export const Main = () => {
 	return (
 		<div className={styles.center}>
 			<Image

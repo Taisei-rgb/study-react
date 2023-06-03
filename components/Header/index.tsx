@@ -1,7 +1,7 @@
 
 import Head from 'next/head'
 
-export function Header(props: any) {
+export const Header = (props: any) => {
   return(
     <Head>
       {props.children}

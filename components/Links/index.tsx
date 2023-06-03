@@ -33,7 +33,7 @@ const ITEMS = [
 	},
 ];
 
-export function Links() {
+export const Links = () => {
 	const [items, setItems] = useState(ITEMS);
 	const hundleReduce = useCallback(() => {
 		setItems((prevItems) => {
