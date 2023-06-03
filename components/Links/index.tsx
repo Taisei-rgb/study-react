@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import styles from "./Links.module.css";
+import { useCallback, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 const ITEMS = [
@@ -33,9 +34,17 @@ const ITEMS = [
 ];
 
 export function Links() {
+	const [items, setItems] = useState(ITEMS);
+	const hundleReduce = useCallback(() => {
+		setItems((prevItems) => {
+			return prevItems.slice(0, prevItems.length - 1);
+		});
+	}, []);
 	return (
 		<div className={styles.grid}>
-			{ITEMS.map((item, index) => {
+			<div>アイテムの数は{items.length}個です。</div>
+			<button onClick={hundleReduce}>減らす</button>
+			{items.map((item, index) => {
 				return (
 					<a
 						href={item.href}
