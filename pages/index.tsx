@@ -5,16 +5,20 @@ import { Headline } from "@/components/Headline";
 import { Main } from "@/components/Main";
 import { Header } from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
-import { useCounter } from "@/hooks/useCounter";
-import { useInputArray } from "@/hooks/useInputArray";
-import { useBgLightBlue } from "@/hooks/useBgLightBlue";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-	const { count, isShow, hundleClick, hundleDisplay } = useCounter();
-	const { text, array, hundleChange, hundleAdd } = useInputArray();
-	useBgLightBlue();
+export default function Home(props: any) {
+	const {
+		count,
+		isShow,
+		hundleClick,
+		hundleDisplay,
+		text,
+		array,
+		hundleChange,
+		hundleAdd,
+	} = props;
 
 	return (
 		<>
@@ -37,7 +41,7 @@ export default function Home() {
 				<input type="text" value={text} onChange={hundleChange} />
 				<button onClick={hundleAdd}>追加</button>
 				<ul>
-					{array.map((item, index) => {
+					{array.map((item: any, index: number) => {
 						return <li key={index}>{item}</li>;
 					})}
 				</ul>
